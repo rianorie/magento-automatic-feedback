@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Reviewo_AutomaticFeedback>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Sales />
+            </depends>
+        </Reviewo_AutomaticFeedback>
+    </modules>
+</config>

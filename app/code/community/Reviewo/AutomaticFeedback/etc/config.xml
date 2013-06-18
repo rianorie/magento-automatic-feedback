@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Reviewo_AutomaticFeedback>
+            <version>0.0.1</version>
+        </Reviewo_AutomaticFeedback>
+    </modules>
+    <global>
+        <helpers>
+            <automaticfeedback>
+                <class>Reviewo_AutomaticFeedback_Helper</class>
+            </automaticfeedback>
+        </helpers>
+        <models>
+            <automaticfeedback>
+                <class>Reviewo_AutomaticFeedback_Model</class>
+            </automaticfeedback>
+        </models>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <automaticfeedback_sales_order_observer>
+                        <type>singleton</type>
+                        <class>automaticfeedback/sales_order_observer</class>
+                        <method>send_new_order</method>
+                    </automaticfeedback_sales_order_observer>
+                </observers>
+            </sales_order_place_after>
+        </events>
+    </global>
+</config>
