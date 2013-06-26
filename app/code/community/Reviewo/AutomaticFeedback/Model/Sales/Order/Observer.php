@@ -38,6 +38,9 @@ class Reviewo_AutomaticFeedback_Model_Sales_Order_Observer
      * Sends the new order details (order id, name and email) to
      * reviewo for the verified reviews functionality
      *
+     * Times out in 5 seconds and catches all exceptions to make
+     * sure the checkout page still continues
+     *
      * @param $observer
      * @return $this
      */
@@ -48,6 +51,9 @@ class Reviewo_AutomaticFeedback_Model_Sales_Order_Observer
         $client = new Varien_Http_Client();
         $client->setUri($this->getResourceUri('order'))
             ->setMethod('POST')
+            ->setConfig(array(
+                'timeout' => 5,
+            ))
             ->setAuth(
                 $this->getConfigData('api_user'),
                 $this->getConfigData('api_key')
@@ -62,8 +68,13 @@ class Reviewo_AutomaticFeedback_Model_Sales_Order_Observer
                 'reference' => $order->getIncrementId(),
                 'name' => $order->getCustomerName(),
                 'email' => $order->getCustomerEmail(),
-            )), "application/json;charset=UTF-8")
-            ->request();
+            )), "application/json;charset=UTF-8");
+
+        try {
+            $client->request();
+        } catch (Exception $e) {
+            Mage::logException($e);
+        }
 
         return $this;
     }
