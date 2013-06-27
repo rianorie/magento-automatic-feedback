@@ -2,30 +2,47 @@
 <config>
     <modules>
         <Reviewo_AutomaticFeedback>
-            <version>0.0.2</version>
+            <version>1.0.0</version>
         </Reviewo_AutomaticFeedback>
     </modules>
     <global>
         <helpers>
-            <automaticfeedback>
+            <reviewo_automaticfeedback>
                 <class>Reviewo_AutomaticFeedback_Helper</class>
-            </automaticfeedback>
+            </reviewo_automaticfeedback>
         </helpers>
         <models>
-            <automaticfeedback>
+            <reviewo_automaticfeedback>
                 <class>Reviewo_AutomaticFeedback_Model</class>
-            </automaticfeedback>
+            </reviewo_automaticfeedback>
         </models>
-        <events>
-            <sales_order_place_after>
-                <observers>
-                    <automaticfeedback_sales_order_observer>
-                        <type>singleton</type>
-                        <class>automaticfeedback/sales_order_observer</class>
-                        <method>send_new_order</method>
-                    </automaticfeedback_sales_order_observer>
-                </observers>
-            </sales_order_place_after>
-        </events>
+        <resources>
+            <automaticfeedback_setup>
+                <setup>
+                    <module>Reviewo_AutomaticFeedback</module>
+                    <class>Reviewo_AutomaticFeedback_Model_Resource_Setup</class>
+                </setup>
+            </automaticfeedback_setup>
+        </resources>
     </global>
+    <default>
+        <sales>
+            <reviewo_automaticfeedback>
+                <active>0</active>
+                <frequency>15 * * * *</frequency>
+            </reviewo_automaticfeedback>
+        </sales>
+    </default>
+    <crontab>
+        <jobs>
+            <reviewo_automaticfeedback>
+                <schedule>
+                    <config_path>sales/reviewo_automaticfeedback/frequency</config_path>
+                </schedule>
+                <run>
+                    <model>reviewo_automaticfeedback/observer::sendOrders</model>
+                </run>
+            </reviewo_automaticfeedback>
+        </jobs>
+    </crontab>
 </config>
