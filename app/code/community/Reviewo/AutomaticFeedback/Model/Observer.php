@@ -36,26 +36,34 @@ class Reviewo_AutomaticFeedback_Model_Observer
     }
 
     /**
-     * Builds a Varien_HTTP_Client instance with auth and headers set
+     * Builds a Zend_Http_Client instance with auth and headers set
      *
-     * @return Varien_Http_Client
+     * @param $uri string
+     * @return Zend_Http_Client
      */
-    public function getClient()
+    public function getClient($uri)
     {
-        $client = new Varien_Http_Client();
-        $client->setConfig(array(
-                'timeout' => 5,
+        $client = new Zend_Http_Client($uri, array(
+            'ssltransport' => 'tls',
+            'timeout' => 5,
+            'useragent' => join(' - ', array(
+                'Reviewo Automatic Feedback Extension',
+                Mage::getBaseUrl(),
+                'Magento '.Mage::getVersion(),
+                'PHP '.phpversion(),
             ))
-            ->setAuth(
-                $this->getConfigData('api_user'),
-                $this->getConfigData('api_key')
-            )
-            ->setHeaders(array(
-                'X-Reviewo-User-Agent' => json_encode(array(
-                    'language' => 'php '.phpversion(),
-                    'framework' => 'magento '.Mage::getVersion(),
-                )),
-            ));
+        ));
+        $client->setAuth(
+            $this->getConfigData('api_user'),
+            $this->getConfigData('api_key')
+        );
+        $client->setHeaders(array(
+            'x-user-agent' => json_encode(array(
+                'language' => array('php', phpversion()),
+                'framework' => array('magento', Mage::getVersion()),
+                'website' => Mage::getBaseUrl()
+            )),
+        ));
         return $client;
     }
 
@@ -70,9 +78,8 @@ class Reviewo_AutomaticFeedback_Model_Observer
      */
     public function createOrder($order)
     {
-        $client = $this->getClient()
-            ->setMethod('POST')
-            ->setUri($this->getResourceUri('order'))
+        $client = $this->getClient($this->getResourceUri('order'))
+            ->setMethod(Zend_Http_Client::POST)
             ->setRawData(json_encode(array(
                 'reference' => $order->getIncrementId(),
                 'name' => $order->getCustomerName(),
@@ -110,12 +117,11 @@ class Reviewo_AutomaticFeedback_Model_Observer
      */
     public function fetchOrder($order)
     {
-        $client = $this->getClient()
-            ->setMethod('GET')
-            ->setUri($this->getResourceUri('order'))
+        $client = $this->getClient($this->getResourceUri('order'))
+            ->setMethod(Zend_Http_Client::GET)
             ->setParameterGet(array(
                 'limit' => 1,
-                'reference' => $order->getIncrementId()
+                'reference' => $order->getIncrementId(),
             ));
 
         try {
