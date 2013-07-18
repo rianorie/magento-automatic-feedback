@@ -158,7 +158,11 @@ class Reviewo_AutomaticFeedback_Model_Observer
             $orderId = $this->fetchOrder($order);
             $orderId = $orderId ? $orderId : $this->createOrder($order);
             if ($orderId) {
-                $order->setReviewoId($orderId)->save();
+                try {
+                    $order->setReviewoId($orderId)->save();
+                } catch (Exception $e) {
+                    Mage::logException($e);
+                }
             }
         }
     }
