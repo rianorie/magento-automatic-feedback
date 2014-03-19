@@ -5,7 +5,7 @@
 
 class Reviewo_AutomaticFeedback_Model_Observer
 {
-    const API_ENDPOINT = 'https://reviewo.com/api';
+    const API_ENDPOINT = 'https://www.reviewo.com/api';
     const API_VERSION = 'v1';
 
     public function __construct()
