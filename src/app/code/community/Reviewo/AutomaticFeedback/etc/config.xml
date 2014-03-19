@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * #@#LICENCE#@#
+ */
+-->
 <config>
     <modules>
         <Reviewo_AutomaticFeedback>

@@ -1,4 +1,7 @@
 <?php
+/**
+ * #@#LICENCE#@#
+ */
 
 /** @var $this Reviewo_AutomaticFeedback_Model_Resource_Setup */
 $installer = $this;

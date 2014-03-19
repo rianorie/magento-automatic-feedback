@@ -1,4 +1,7 @@
 <?php
+/**
+ * #@#LICENCE#@#
+ */
 
 class Reviewo_AutomaticFeedback_Model_Observer
 {
