@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License (OSL 3.0)</license>
+    <summary>Reviewo Automatic Feedback</summary>
+    <description>This extension automatically sends each of your orders to Reviewo for use in the Automatic Feedback service.</description>
+    <notes/>
+    <extends/>
+    <authors>
+        <author>
+            <name>Leon Smith</name>
+            <user>Reviewo</user>
+            <email>leon@reviewo.com</email>
+        </author>
+    </authors>
+    <compatible/>
+    <dependencies>
+        <required>
+            <php>
+                <min>5.3.0</min>
+                <max>5.6.0</max>
+            </php>
+            <package>
+                <name>Mage_Core_Modules</name>
+                <channel>community</channel>
+                <min>1.6.0.0</min>
+                <max>1.9.0.0</max>
+            </package>
+        </required>
+    </dependencies>
+</package>

@@ -1,0 +1,30 @@
+<project name="Magento Automatic Feedback" default="release" basedir=".">
+
+    <property name="extension.name" value="Reviewo_AutomaticFeedback"/>
+    <property name="extension.version" value="1.1.0"/>
+
+    <property name="build.dir" value="build"/>
+    <property name="src.dir" value="src" />
+    <property name="etc.dir" value="etc" />
+    <property name="release.dir"  value="release"/>
+
+    <target name="release" depends="clean" description="Generate a release version">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${release.dir}"/>
+        <copy todir="${build.dir}">
+            <filterchain>
+                <replacetokenswithfile translatehtml="false" />
+            </filterchain>
+            <fileset dir="${src.dir}"/>
+        </copy>
+
+        <exec command="${etc.dir}/magento-package-builder.py ${extension.name} ${extension.version} ${build.dir} ${etc.dir}/package.xml --pretty > ${build.dir}/package.xml" />
+        <tar destfile="${release.dir}/${extension.name}-${extension.version}.tgz" basedir="${build.dir}" compression="gzip"/>
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="clean" description="Clean up existing builds">
+        <delete dir="${release.dir}"/>
+        <delete dir="${build.dir}"/>
+    </target>
+</project>
