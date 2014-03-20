@@ -22,12 +22,12 @@
             </reviewo_automaticfeedback>
         </models>
         <resources>
-            <automaticfeedback_setup>
+            <reviewo_automaticfeedback_setup>
                 <setup>
                     <module>Reviewo_AutomaticFeedback</module>
                     <class>Reviewo_AutomaticFeedback_Model_Resource_Setup</class>
                 </setup>
-            </automaticfeedback_setup>
+            </reviewo_automaticfeedback_setup>
         </resources>
     </global>
     <default>
