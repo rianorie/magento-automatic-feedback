@@ -8,7 +8,7 @@ This magento extension automatically sends all your Magento orders to Reviewo fo
  - [Usage](#usage)
  - [Support](#support)
  - [Authors](#authors)
- - [Copyright and license](#copyright-and-license)
+ - [Copyright and licence](#copyright-and-licence)
 
 ## Installation
 
@@ -64,5 +64,5 @@ For more information on SemVer, please visit <http://semver.org/>.
 - <https://twitter.com/leonmarksmith>
 - <https://github.com/leonsmith>
 
-## Copyright and license
-Code and documentation copyright 2014 Reviewo Ltd. Code and documentation released under [The Open Software License 3.0](LICENSE).
+## Copyright and licence
+Code and documentation copyright 2014 Reviewo Ltd. Code and documentation released under [The Open Software License 3.0](LICENCE).
