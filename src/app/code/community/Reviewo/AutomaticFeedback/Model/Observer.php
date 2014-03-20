@@ -55,10 +55,7 @@ class Reviewo_AutomaticFeedback_Model_Observer
             'ssltransport' => 'tls',
             'timeout' => 5,
         ));
-        $client->setAuth(
-            $this->getConfigData('api_user'),
-            $this->getConfigData('api_key')
-        );
+        $client->setAuth($this->getConfigData('api_key'), '');
         $client->setHeaders(array(
             'useragent' => 'Magento Automatic Feedback Extension - '.$extensionVersion,
             'x-user-agent' => json_encode(array(
