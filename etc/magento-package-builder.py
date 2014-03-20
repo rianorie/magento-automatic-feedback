@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-from cStringIO import StringIO
 import os
 import hashlib
 import datetime
@@ -20,7 +19,7 @@ class MagentoPacker(object):
         'magemedia':        'media',
         'mageskin':         'skin',
         'magetest':         'tests',
-        }
+    }
 
     def __init__(self, name, version, src, template, stability='stable',
                  channel='community', date=None, pretty=False, verbose=False):
@@ -31,7 +30,6 @@ class MagentoPacker(object):
         assert stability, 'Please provide a stability level'
         assert channel, 'Please provide a channel'
         assert type(date) is not datetime.date
-
         self.name = name
         self.version = version
         self.src = src
@@ -54,9 +52,10 @@ class MagentoPacker(object):
 
     def log(self, message):
         if self.verbose:
-            sys.stdout.write(message)
+            sys.stdout.write(message + '\n')
 
     def add_node(self, name, content=None):
+        self.log('Adding node: %s' % name)
         elm = ElementTree.SubElement(self.root, name)
         if content:
             elm.text = content
@@ -90,19 +89,19 @@ class MagentoPacker(object):
             else:
                 dirs = ['.']
 
-            for dir in dirs:
-                dir_node = current_node.find('dir[@name=\'%s\']' % dir)
+            for _dir in dirs:
+                dir_node = current_node.find('dir[@name=\'%s\']' % _dir)
                 if dir_node is None:
                     dir_node = ElementTree.SubElement(current_node, 'dir')
-                    dir_node.set('name', dir)
+                    dir_node.set('name', _dir)
                 current_node = dir_node
 
-            for file in file_names:
-                hash = self._get_file_hash(os.path.join(dir_path, file))
-                self.log('Adding file with hash %s: %s' % (hash, file))
+            for _file in file_names:
+                digest = self._get_file_hash(os.path.join(dir_path, _file))
+                self.log('Adding file with digest %s: %s' % (digest, _file))
                 file_node = ElementTree.SubElement(current_node, 'file')
-                file_node.set('name', file)
-                file_node.set('hash', hash)
+                file_node.set('name', _file)
+                file_node.set('hash', digest)
 
         if self.pretty:
             raw = ElementTree.tostring(self.tree.getroot(), 'utf-8')
@@ -113,10 +112,10 @@ class MagentoPacker(object):
         return True
 
     def get_target(self, dir_path):
-        dir_path = dir_path[len(self.src):]
-        for dir, path in self.TARGET_DIRS.items():
-            if dir_path.startswith(path):
-                return dir, dir_path[len(path) + 1:]
+        dir_path = dir_path[len(self.src) + 1:]
+        for _dir, _path in self.TARGET_DIRS.items():
+            if dir_path.startswith(_path):
+                return _dir, dir_path[len(_path) + 1:]
         return None, None
 
     def _get_file_hash(self, file):
