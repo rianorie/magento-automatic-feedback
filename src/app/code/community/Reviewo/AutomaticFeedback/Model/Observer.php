@@ -46,25 +46,26 @@ class Reviewo_AutomaticFeedback_Model_Observer
      */
     public function getClient($uri)
     {
+        $extensionVersion = Mage::helper('automaticfeedback')->getExtensionVersion();
+        $phpVersion = phpversion();
+        $magentoVersion = Mage::getVersion();
+        $storeUrl = Mage::getBaseUrl();
+
         $client = new Zend_Http_Client($uri, array(
             'ssltransport' => 'tls',
             'timeout' => 5,
-            'useragent' => join(' - ', array(
-                'Reviewo Automatic Feedback Extension',
-                Mage::getBaseUrl(),
-                'Magento '.Mage::getVersion(),
-                'PHP '.phpversion(),
-            ))
         ));
         $client->setAuth(
             $this->getConfigData('api_user'),
             $this->getConfigData('api_key')
         );
         $client->setHeaders(array(
+            'useragent' => 'Magento Automatic Feedback Extension - '.$extensionVersion,
             'x-user-agent' => json_encode(array(
-                'language' => array('php', phpversion()),
-                'framework' => array('magento', Mage::getVersion()),
-                'website' => Mage::getBaseUrl()
+                'php' => $phpVersion,
+                'magento' => $magentoVersion,
+                'extension' => $extensionVersion,
+                'store' => $storeUrl
             )),
         ));
         return $client;
@@ -87,6 +88,7 @@ class Reviewo_AutomaticFeedback_Model_Observer
                 'reference' => $order->getIncrementId(),
                 'name' => $order->getCustomerName(),
                 'email' => $order->getCustomerEmail(),
+                'purchased_at' => $order->getCreatedAtStoreDate()->getIso()
             )), "application/json;charset=UTF-8");
 
         try {
