@@ -23,15 +23,15 @@ Installation can be performed by one of two methods
 *EXTENSION CURRENTLY WAITING APPROVAL*
 
 To install via magento connect use the extension key:
-`http://connect20.magentocommerce.com/community/ Reviewo_AutomaticFeedback`
+`http://connect20.magentocommerce.com/community/Reviewo_AutomaticFeedback`
 
 ### Magento Connect direct package upload
 
-Login to your Magento Connect Manager. Under 'Direct package file upload' you can 'Upload package file', click the 'Choose File button' and upload this file: [Reviewo_AutomaticFeedback-1.1.0.tgz](https://github.com/reviewo/magento-automatic-feedback/raw/v1.1.0/release/Reviewo_AutomaticFeedback-1.1.0.tgz)
+Login to your Magento Connect Manager. Under 'Direct package file upload' you can 'Upload package file', click the 'Choose File button' and upload this file: [Reviewo_AutomaticFeedback-1.2.0.tgz](https://github.com/reviewo/magento-automatic-feedback/raw/v1.2.0/release/Reviewo_AutomaticFeedback-1.2.0.tgz)
 
 ### Manual installation
 
-Download the [latest stable release](https://github.com/reviewo/magento-automatic-feedback/raw/v1.1.0/release/Reviewo_AutomaticFeedback-1.1.0.tgz) and unzip to to your root Magento directory
+Download the [latest stable release](https://github.com/reviewo/magento-automatic-feedback/raw/v1.2.0/release/Reviewo_AutomaticFeedback-1.2.0.tgz) and unzip to to your root Magento directory
 
 ## Usage
 
@@ -65,4 +65,5 @@ For more information on SemVer, please visit <http://semver.org/>.
 - <https://github.com/leonsmith>
 
 ## Copyright and licence
-Code and documentation copyright 2014 Reviewo Ltd. Code and documentation released under [The Open Software License 3.0](LICENCE).
+Code and documentation copyright 2014 Reviewo Ltd.
+Code and documentation released under [The Open Software License 3.0](LICENCE).
