@@ -17,13 +17,13 @@
         <required>
             <php>
                 <min>5.3.0</min>
-                <max>5.6.0</max>
+                <max>6.0.0</max>
             </php>
             <package>
                 <name>Mage_Core_Modules</name>
                 <channel>community</channel>
-                <min>1.6.0.0</min>
-                <max>1.9.0.0</max>
+                <min>1.7.0.0</min>
+                <max>2.0.0.0</max>
             </package>
         </required>
     </dependencies>
