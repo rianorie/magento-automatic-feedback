@@ -7,7 +7,7 @@
 <config>
     <modules>
         <Reviewo_AutomaticFeedback>
-            <version>1.2.0</version>
+            <version>1.3.0</version>
         </Reviewo_AutomaticFeedback>
     </modules>
     <global>
@@ -46,7 +46,7 @@
                     <config_path>sales/reviewo_automaticfeedback/frequency</config_path>
                 </schedule>
                 <run>
-                    <model>reviewo_automaticfeedback/observer::sendOrders</model>
+                    <model>reviewo_automaticfeedback/observer::run</model>
                 </run>
             </reviewo_automaticfeedback>
         </jobs>
