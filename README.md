@@ -25,11 +25,11 @@ To install via magento connect use the extension key:
 
 ### Magento Connect direct package upload
 
-Login to your Magento Connect Manager. Under 'Direct package file upload' you can 'Upload package file', click the 'Choose File button' and upload this file: [Reviewo_AutomaticFeedback-1.3.0.tgz](https://github.com/reviewo/magento-automatic-feedback/raw/v1.3.0/release/Reviewo_AutomaticFeedback-1.3.0.tgz)
+Login to your Magento Connect Manager. Under 'Direct package file upload' you can 'Upload package file', click the 'Choose File button' and upload this file: [Reviewo_AutomaticFeedback-1.3.1.tgz](https://github.com/reviewo/magento-automatic-feedback/raw/v1.3.1/release/Reviewo_AutomaticFeedback-1.3.1.tgz)
 
 ### Manual installation
 
-Download the [latest stable release](https://github.com/reviewo/magento-automatic-feedback/raw/v1.3.0/release/Reviewo_AutomaticFeedback-1.3.0.tgz) and unzip to to your root Magento directory
+Download the [latest stable release](https://github.com/reviewo/magento-automatic-feedback/raw/v1.3.1/release/Reviewo_AutomaticFeedback-1.3.1.tgz) and unzip to to your root Magento directory
 
 ## Usage
 
