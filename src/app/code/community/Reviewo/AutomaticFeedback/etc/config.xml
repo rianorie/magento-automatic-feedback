@@ -7,7 +7,7 @@
 <config>
     <modules>
         <Reviewo_AutomaticFeedback>
-            <version>1.3.1</version>
+            <version>1.3.2</version>
         </Reviewo_AutomaticFeedback>
     </modules>
     <global>

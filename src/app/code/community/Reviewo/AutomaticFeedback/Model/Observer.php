@@ -78,24 +78,22 @@ class Reviewo_AutomaticFeedback_Model_Observer
      */
     public function createOrder($order)
     {
-        $data = array(
-            'reference' => $order->getIncrementId(),
-            'meta' => array(
-                'purchased_at' => $order->getCreatedAtDate()->setTimeZone('UTC')->getIso()
-            )
-        );
+        $orderData = new Varien_Object();
+        $orderData->setReference($order->getIncrementId());
+        $orderData->setMeta(array(
+            'purchased_at' => $order->getCreatedAtDate()->setTimeZone('UTC')->getIso()
+        ));
 
         Mage::dispatchEvent('reviewo_automaticfeedback_create_order', array(
-            'data' => $data,
+            'orderData' => $orderData,
             'order' => $order,
         ));
 
-        // meta should be a json string
-        $data['meta'] = json_encode($data['meta']);
+        $orderData->setMeta(json_encode($orderData->getMeta()));
 
         $client = $this->getClient($this->getResourceUri('order'))
             ->setMethod(Zend_Http_Client::POST)
-            ->setRawData(json_encode($data), "application/json;charset=UTF-8");
+            ->setRawData($orderData->toJson(), "application/json;charset=UTF-8");
 
         try {
             $response = $client->request();
