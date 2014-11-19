@@ -175,7 +175,9 @@ class Reviewo_AutomaticFeedback_Model_Observer
             // try and save the reviewo order id
             if ($orderId) {
                 try {
+                    Mage::register('sales_order', $order);
                     $order->setReviewoOrderId($orderId)->save();
+                    Mage::unregister('sales_order');
                 } catch (Exception $e) {
                     Mage::logException($e);
                 }
@@ -286,7 +288,9 @@ class Reviewo_AutomaticFeedback_Model_Observer
             // try and save the reviewo feedback request id
             if ($feedbackRequestId) {
                 try {
+                    Mage::register('sales_order', $order);
                     $order->setReviewoFeedbackRequestId($feedbackRequestId)->save();
+                    Mage::unregister('sales_order');
                 } catch (Exception $e) {
                     Mage::logException($e);
                 }
